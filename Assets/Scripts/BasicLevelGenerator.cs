@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class BasicLevelgenerator : MonoBehaviour
+public class BasicLevelGenerator : MonoBehaviour
 {
 
     public Vector2Int size;
@@ -35,5 +36,10 @@ public class BasicLevelgenerator : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Restart() {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
