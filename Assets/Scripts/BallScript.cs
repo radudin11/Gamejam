@@ -1,17 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class BallScript : MonoBehaviour
 {
 
     public float floor = -5.0f;
+    public float speed = 8.0f;
+
+    Vector2 velocityRef; 
 
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        rb.velocity = Vector2.down * speed;
+        velocityRef = Vector2.down * speed;
         
     }
 
@@ -20,8 +26,12 @@ public class BallScript : MonoBehaviour
     {
         if (transform.position.y < floor)
         {
-            transform.position = new Vector3(0, 0, 0);
-            rb.velocity = new Vector2(0, 0);
+            transform.position = new Vector3(0, 1, 0);
+            rb.velocity = Vector2.down * speed;
+        }
+
+        if (rb.velocity.magnitude != velocityRef.magnitude){
+            rb.velocity = rb.velocity.normalized * speed;
         }
     }
 
