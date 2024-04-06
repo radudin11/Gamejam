@@ -138,7 +138,7 @@ public class BasicLevelGenerator : MonoBehaviour
     Debug.Log(brickWidth + " " + brickHeight + " " + offsetX + " " + offsetY);
     Debug.Log((brickWidth * level.y + offsetX * (level.y - 1)) + " " + (brickHeight + level.x + offsetY * (level.x - 1)));
 
-    Vector2 anchor = stageRoot.GetComponent<RectTransform>().anchoredPosition;
+    Vector2 anchor = Vector2.zero; // stageRoot.GetComponent<RectTransform>().anchoredPosition;
     double startY = anchor.y - r.height / 2 + 0.4 * r.height + brickHeight / 2;
     for (int i = 0; i <  level.x; i++)
     {
