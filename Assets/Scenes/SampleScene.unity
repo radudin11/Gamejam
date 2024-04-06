@@ -481,9 +481,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bd219077ef0b70489ea160df46d3c0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
-  boundry: 10
-  shieldNo: 0
 --- !u!1 &467175932
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,6 +514,8 @@ MonoBehaviour:
   offset: {x: 2, y: 2}
   yRef: 0
   brickPrefab: {fileID: 7837333115179020732, guid: e130ee10d2ee11343bbba90bcd0aea6a, type: 3}
+  canvas: {fileID: 0}
+  stageRoot: {fileID: 0}
 --- !u!4 &467175934
 Transform:
   m_ObjectHideFlags: 0
