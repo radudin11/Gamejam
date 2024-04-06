@@ -4,11 +4,13 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Game {
-    public class AddHPCommon : Powerup {
+    public class IncreasePaddleSize : Powerup {
         public override void Use() {
-            // add 15 HP
-            GameObject.Find("life").GetComponent<Life>().AddPermanentLife(15);
+            // add shield
+            GameObject.Find("Paddle").GetComponent<Paddle>().IncreasePaddleSize();
+            // start next level
             GameObject.Find("BasicLevelGenerator").GetComponent<BasicLevelGenerator>().GenerateLevel();
+            // get all powerups
             GameObject[] powerups = GameObject.FindGameObjectsWithTag("powerup");
             foreach (GameObject powerup in powerups) {
                 Destroy(powerup);
@@ -16,7 +18,7 @@ namespace Game {
             Time.timeScale = 1;
             GameObject powerupPanel = GameObject.Find("Powerup");
             powerupPanel.SetActive(false);
-            // get all powerups
+
             
         }
     }

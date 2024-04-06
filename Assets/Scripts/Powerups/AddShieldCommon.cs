@@ -9,6 +9,15 @@ namespace Game {
             // add shield
             GameObject.Find("Paddle").GetComponent<Paddle>().AddShield();
             // start next level
+            GameObject.Find("BasicLevelGenerator").GetComponent<BasicLevelGenerator>().GenerateLevel();
+            GameObject[] powerups = GameObject.FindGameObjectsWithTag("powerup");
+            foreach (GameObject powerup in powerups) {
+                Destroy(powerup);
+            }
+            Time.timeScale = 1;
+            GameObject powerupPanel = GameObject.Find("Powerup");
+            powerupPanel.SetActive(false);
+            // get all powerups
             
         }
     }

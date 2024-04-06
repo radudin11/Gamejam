@@ -4,10 +4,10 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Game {
-    public class AddHPCommon : Powerup {
+    public class AddHPLegendary : Powerup {
         public override void Use() {
             // add 15 HP
-            GameObject.Find("life").GetComponent<Life>().AddPermanentLife(15);
+            GameObject.Find("life").GetComponent<Life>().AddPermanentLife(75);
             GameObject.Find("BasicLevelGenerator").GetComponent<BasicLevelGenerator>().GenerateLevel();
             GameObject[] powerups = GameObject.FindGameObjectsWithTag("powerup");
             foreach (GameObject powerup in powerups) {

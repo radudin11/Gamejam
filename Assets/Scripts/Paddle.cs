@@ -30,9 +30,10 @@ public class Paddle : MonoBehaviour
     }
 
     public void AddShield() {
-        shieldNo++;
-        if (shieldNo > 3){
-            shieldNo = 3;
-        }
+        shieldNo += 2;
+    }
+
+    public void IncreasePaddleSize() {
+        GameObject.Find("Paddle").transform.localScale += new Vector3(0.2f, 0, 0);
     }
 }

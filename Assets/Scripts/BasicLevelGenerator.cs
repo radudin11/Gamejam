@@ -14,6 +14,10 @@ public class BasicLevelGenerator : MonoBehaviour
 
     private void Awake()
     {
+        GenerateLevel();
+    }
+
+    public void GenerateLevel() {
         for (int i = 0; i < size.x; i ++) {
             for (int j = 0; j < size.y; j++) {
                 Vector2 spawnPosition = new Vector2((((float)size.x - 1)*.5f- i) * offset.x, j * offset.y + yRef);

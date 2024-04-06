@@ -38,6 +38,8 @@ public class BallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        numBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
         if (transform.position.y < floor)
         {
             transform.position = new Vector3(0, 1, 0);
@@ -71,11 +73,14 @@ public class BallScript : MonoBehaviour
     void Powerup()
     {
         powerupPanel.SetActive(true);
+        transform.position = new Vector3(0, 1, 0);
+        rb.velocity = Vector2.down * speed;
+        // set paddle x to 0
+        paddle.transform.position = new Vector3(0, paddle.transform.position.y, paddle.transform.position.z);
+
         Time.timeScale = 0;
 
         PowerupGeneratorObj.GetComponent<PowerupGenerator>().GeneratePowerups();
-
-        Destroy(gameObject);
     }
 }
 
