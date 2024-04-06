@@ -1,16 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game {
 public class PowerupGenerator : MonoBehaviour
 {
-    public Powerup[] common;
-    public Powerup[] rare;
-    public Powerup[] epic;
-    public Powerup[] legendary;
+    public GameObject[] common;
+    public GameObject[] rare;
+    public GameObject[] epic;
+    public GameObject[] legendary;
 
     public GameObject powerupGrid;
+
+    // public Vector2[] pos = {new Vector2(259.9999f, -271.5464f), new Vector2(0, 0), new Vector2(2, 0, 0)};
 
     public void GeneratePowerups()
     {
@@ -18,19 +21,20 @@ public class PowerupGenerator : MonoBehaviour
         for (int i = 0; i < 3; i ++) {
             float rarity = Random.Range(0.0f, 1.0f);
             
-            if (rarity < 0.1f) {
-                int randIndex = Random.Range(0, legendary.Length);
-                Instantiate(legendary[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
-            } else if (rarity < 0.2f) {
-                int randIndex = Random.Range(0, epic.Length);
-                Instantiate(epic[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
-            } else if (rarity < 0.6f) {
-                int randIndex = Random.Range(0, rare.Length);
-                Instantiate(rare[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
-            } else {
+            // if (rarity < 0.1f) {
+            //     int randIndex = Random.Range(0, legendary.Length);
+            //     Instantiate(legendary[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
+            // } else if (rarity < 0.2f) {
+            //     int randIndex = Random.Range(0, epic.Length);
+            //     Instantiate(epic[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
+            // } else if (rarity < 0.6f) {
+            //     int randIndex = Random.Range(0, rare.Length);
+            //     Instantiate(rare[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
+            // } else {
                 int randIndex = Random.Range(0, common.Length);
-                Instantiate(common[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
-            }
+                GameObject card = Instantiate(common[randIndex], powerupGrid.transform);
+                card.transform.localPosition = new Vector3(card.transform.localPosition.x, card.transform.localPosition.y, -20);
+            // }
         }
     }
 

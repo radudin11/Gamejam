@@ -1,9 +1,16 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEditor;
+using UnityEngine;
+
 
 namespace Game {
-    public class Powerup: MonoBehaviour {
+    public abstract class Powerup: MonoBehaviour {
         public enum Type {
             Common, Rare, Epic, Legendary
-        } type;
+        };
+
+        public Type rarity;
 
         public abstract void Use();
     };

@@ -33,5 +33,11 @@ public class Life : MonoBehaviour
         currentLife -= amount;
     }
 
+    public void AddPermanentLife(int amount)
+    {
+        maxLife += amount;
+        currentLife += amount;
+    }
+
 
 }
