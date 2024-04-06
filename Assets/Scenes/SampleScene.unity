@@ -483,7 +483,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   boundry: 10
-  shieldNo: 2
+  shieldNo: 0
 --- !u!1 &467175932
 GameObject:
   m_ObjectHideFlags: 0
@@ -585,10 +585,11 @@ MonoBehaviour:
   - {fileID: 5314679648660402518, guid: a58505cdeb2a19146af71eeb973cc2ad, type: 3}
   rare:
   - {fileID: 5314679648660402518, guid: 0830e46d350c04244bebdbdff99401a4, type: 3}
+  - {fileID: 5314679648660402518, guid: af949cbd7c0a0b241b89a7f4b40de8fe, type: 3}
   epic:
-  - {fileID: 0}
+  - {fileID: 5314679648660402518, guid: 8151d88e90a0b7c4f92280eed6252747, type: 3}
   legendary:
-  - {fileID: 0}
+  - {fileID: 5314679648660402518, guid: 0180b8af8e1fd5446894eb40afa5fcf9, type: 3}
   powerupGrid: {fileID: 871462696}
 --- !u!1 &477298084
 GameObject:
@@ -1037,6 +1038,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shield: {fileID: 6028093979734387975, guid: 63bb02db93be40040958c9cd5e2cfcf9, type: 3}
+  shieldNo: 0
 --- !u!114 &1150431051
 MonoBehaviour:
   m_ObjectHideFlags: 0
