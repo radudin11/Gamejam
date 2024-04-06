@@ -513,10 +513,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f71920300da6e1e44952ac69c9df823a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: {x: 3, y: 2}
+  size: {x: 1, y: 2}
   offset: {x: 2, y: 2}
   yRef: 0
   brickPrefab: {fileID: 7837333115179020732, guid: e130ee10d2ee11343bbba90bcd0aea6a, type: 3}
+  canvas: {fileID: 0}
 --- !u!4 &467175934
 Transform:
   m_ObjectHideFlags: 0
@@ -581,7 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   common:
-  - {fileID: 5314679648660402518, guid: 29d06500cb7b60a45906aa9e5c17c9a2, type: 3}
+  - {fileID: 5314679648660402518, guid: 8b898fc856a442448aebd59860e3176d, type: 3}
   rare:
   - {fileID: 0}
   epic:
@@ -617,7 +618,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1959240365}
   - {fileID: 1194182985}
   m_Father: {fileID: 1192532303}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -753,8 +753,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.45199585, y: 0.0000076293945}
-  m_SizeDelta: {x: 0.904, y: -53.388}
+  m_AnchoredPosition: {x: 19.203, y: 3.6400003}
+  m_SizeDelta: {x: -25.927, y: -58.588}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &871462698
 MonoBehaviour:
@@ -1080,6 +1080,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 477298085}
+  - {fileID: 1959240365}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1264,11 +1265,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 477298085}
+  m_Father: {fileID: 1192532303}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.109502, y: -1.9285009}
+  m_AnchoredPosition: {x: -7.1096506, y: -1.9285009}
   m_SizeDelta: {x: 14.219, y: 3.857}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1959240366

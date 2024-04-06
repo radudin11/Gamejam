@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game {
     public class AddHPCommon : Powerup {
-        public override void Use() {
+        public override void Apply() {
             // add 15 HP
             GameObject.Find("life").GetComponent<Life>().AddPermanentLife(15);
         }

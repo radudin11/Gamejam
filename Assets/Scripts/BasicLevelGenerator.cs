@@ -22,20 +22,50 @@ public class BasicLevelGenerator : MonoBehaviour
         }
     }
 
-
-
-
+    public GameObject canvas;
+    private GameObject stageRoot;
+    private GameObject newRoot;
+    private bool stageIsMoving = false;
+    private float stageMoveSpeed = 15.0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        canvas = GameObject.Find("Canvas");
+        stageRoot = GameObject.Find("StageRoot");
+    }
+
+    public void NextStage() {
+        newRoot = new GameObject("[tempname]", typeof(RectTransform));
+        RectTransform newRootRect = newRoot.GetComponent<RectTransform>();
+        newRoot.transform.SetParent(canvas.transform);
+        newRoot.transform.position = stageRoot.transform.position;
+        newRoot.transform.localScale = Vector3.one;
+        newRootRect.sizeDelta = stageRoot.GetComponent<RectTransform>().sizeDelta;
+        Vector3 newRootPos = stageRoot.transform.position + 
+            new Vector3(0, stageRoot.GetComponent<RectTransform>().rect.height, 0);
+        newRootRect.anchoredPosition = newRootPos;
+        // stage generation
+        stageIsMoving = true;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        
+    void Update() {
+        RectTransform stageRootRect = stageRoot.GetComponent<RectTransform>();
+        if (stageIsMoving) {
+            RectTransform newRootRect = newRoot.GetComponent<RectTransform>();
+            if (newRootRect.anchoredPosition.y > 0) {
+                Vector2 newRootPos = newRootRect.anchoredPosition - Vector2.up * stageMoveSpeed * Time.deltaTime;
+                newRootRect.anchoredPosition = newRootPos;
+                Vector2 newStagePos = stageRootRect.anchoredPosition - Vector2.up * stageMoveSpeed * Time.deltaTime;
+                stageRootRect.anchoredPosition = newStagePos;
+            } else {
+                stageIsMoving = false;
+                Destroy(stageRoot);
+                stageRoot = newRoot;
+            }
+        }
     }
 
     public void Restart() {

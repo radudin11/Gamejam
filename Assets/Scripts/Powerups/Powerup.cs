@@ -5,13 +5,29 @@ using UnityEngine;
 
 
 namespace Game {
-    public abstract class Powerup: MonoBehaviour {
+    public class Powerup: MonoBehaviour {
         public enum Type {
             Common, Rare, Epic, Legendary
         };
 
         public Type rarity;
+        public GameObject stageGenerator;
 
-        public abstract void Use();
+        public void Start() {
+            stageGenerator = GameObject.Find("BasicLevelGenerator");
+        }
+
+        public void Use() {
+            Apply();
+            stageGenerator.GetComponent<BasicLevelGenerator>().NextStage();
+        }
+
+        public virtual void Apply() {
+            Debug.Log("Stub");
+        }
+
+        public void Update() {
+    
+        }
     };
 }
