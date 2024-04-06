@@ -11,12 +11,13 @@ public class PowerupGenerator : MonoBehaviour
     public GameObject[] epic;
     public GameObject[] legendary;
 
-    public GameObject powerupGrid;
+    GameObject powerupGrid;
 
     // public Vector2[] pos = {new Vector2(259.9999f, -271.5464f), new Vector2(0, 0), new Vector2(2, 0, 0)};
 
     public void GeneratePowerups()
     {
+        powerupGrid = GameObject.Find("Powerups");
         // generate 3 random powerups
         for (int i = 0; i < 3; i ++) {
             float rarity = Random.Range(0.0f, 1.0f);

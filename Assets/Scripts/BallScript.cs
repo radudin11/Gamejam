@@ -13,9 +13,9 @@ public class BallScript : MonoBehaviour
 
     Vector2 velocityRef; 
 
-    public GameObject powerupPanel;
-
+    public GameObject PowerupsObject;
     public GameObject PowerupGeneratorObj;
+    public GameObject BasicLevelGen;
 
     public GameObject life;
 
@@ -33,16 +33,17 @@ public class BallScript : MonoBehaviour
         velocityRef = Vector2.down * speed;
 
         numBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
+        BasicLevelGen = GameObject.Find("BasicLevelGenerator");
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
         numBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
         if (transform.position.y < floor)
         {
-            transform.position = new Vector3(0, 1, 0);
+            transform.position = new Vector3(0, -1.5f, 0);
             rb.velocity = Vector2.down * speed;
 
             life.GetComponent<Life>().LoseLife(20);
@@ -72,21 +73,24 @@ public class BallScript : MonoBehaviour
 
     void Powerup()
     {
-        powerupPanel.SetActive(true);
-        transform.position = new Vector3(0, -0.5f, 0);
-        rb.velocity = Vector2.down * speed;
+        PowerupsObject.SetActive(true);
+        BasicLevelGen.GetComponent<BasicLevelGenerator>().stageRoot.transform.Find("Text (TMP)").gameObject.SetActive(true);
+        // transform.position = new Vector3(0, -0.5f, 0);
+        // rb.velocity = Vector2.down * speed;
         // set paddle x to 0
         paddle.transform.position = new Vector3(0, paddle.transform.position.y, paddle.transform.position.z);
 
+        gameObject.SetActive(false);
         Time.timeScale = 0;
 
         PowerupGeneratorObj.GetComponent<PowerupGenerator>().GeneratePowerups();
     }
 
     public void IncreaseSize() {
-        GameObject ball = GameObject.Find("Ball");
-        ball.transform.localScale += new Vector3(0.2f, 0.2f, 0);
+        gameObject.transform.localScale += new Vector3(0.2f, 0.2f, 0);
     }
 }
+
+
 
 }
