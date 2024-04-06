@@ -4,11 +4,10 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Game {
-    public class AddShieldCommon : Powerup {
+    public class AddHPLegendary : Powerup {
         public override void Use() {
-            // add shield
-            GameObject.Find("Paddle").GetComponent<Paddle>().AddShield();
-            // start next level
+            // add 15 HP
+            GameObject.Find("life").GetComponent<Life>().AddPermanentLife(75);
             GameObject.Find("BasicLevelGenerator").GetComponent<BasicLevelGenerator>().GenerateLevel();
             GameObject[] powerups = GameObject.FindGameObjectsWithTag("powerup");
             foreach (GameObject powerup in powerups) {
