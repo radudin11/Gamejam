@@ -21,9 +21,7 @@ public class BallScript : MonoBehaviour
 
     public GameObject paddle;
 
-    public 
-
-    int numBricks = 0;
+    public int numBricks = 0;
 
 
     Rigidbody2D rb;
@@ -36,6 +34,8 @@ public class BallScript : MonoBehaviour
 
         numBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
         
+        Time.timeScale = 1;
+        GetComponent<Transform>().position = new Vector3(0, 1, 0);
     }
 
     // Update is called once per frame
@@ -45,6 +45,7 @@ public class BallScript : MonoBehaviour
         if (numBricks == 0)
         {
             Powerup();
+            NextLevel();
         } else {
             if (transform.position.y < floor)
             {
@@ -76,12 +77,22 @@ public class BallScript : MonoBehaviour
 
     void Powerup()
     {
-        powerupPanel.SetActive(true);
+        //powerupPanel.SetActive(true);
         Time.timeScale = 0;
 
-        PowerupGeneratorObj.GetComponent<PowerupGenerator>().GeneratePowerups();
+        //PowerupGeneratorObj.GetComponent<PowerupGenerator>().GeneratePowerups();
 
-        Destroy(gameObject);
+        // Destroy(gameObject);
+
+        BasicLevelGenerator b = GameObject.FindFirstObjectByType<BasicLevelGenerator>();
+        b.LoadLevel(2);
+        Start();
+
+    }
+
+    void NextLevel()
+    {
+
     }
 }
 
