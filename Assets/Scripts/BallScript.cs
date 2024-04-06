@@ -17,6 +17,12 @@ public class BallScript : MonoBehaviour
 
     public GameObject PowerupGeneratorObj;
 
+    public GameObject life;
+
+    public GameObject paddle;
+
+    public 
+
     int numBricks = 0;
 
 
@@ -44,6 +50,12 @@ public class BallScript : MonoBehaviour
             {
                 transform.position = new Vector3(0, 1, 0);
                 rb.velocity = Vector2.down * speed;
+
+                life.GetComponent<Life>().LoseLife(20);
+
+                // set paddle x to 0
+                paddle.transform.position = new Vector3(0, paddle.transform.position.y, paddle.transform.position.z);
+
             }
         }
         
