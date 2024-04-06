@@ -13,8 +13,6 @@ public class PaddleMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 10.0f;
-        boundry = 9.5f;
     }
 
     // Update is called once per frame
