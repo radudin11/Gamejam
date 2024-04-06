@@ -73,7 +73,7 @@ public class BallScript : MonoBehaviour
     void Powerup()
     {
         powerupPanel.SetActive(true);
-        transform.position = new Vector3(0, 1, 0);
+        transform.position = new Vector3(0, -0.5f, 0);
         rb.velocity = Vector2.down * speed;
         // set paddle x to 0
         paddle.transform.position = new Vector3(0, paddle.transform.position.y, paddle.transform.position.z);
@@ -81,6 +81,11 @@ public class BallScript : MonoBehaviour
         Time.timeScale = 0;
 
         PowerupGeneratorObj.GetComponent<PowerupGenerator>().GeneratePowerups();
+    }
+
+    public void IncreaseSize() {
+        GameObject ball = GameObject.Find("Ball");
+        ball.transform.localScale += new Vector3(0.2f, 0.2f, 0);
     }
 }
 
