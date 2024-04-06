@@ -8,6 +8,7 @@ public class Life : MonoBehaviour
 
     public int currentLife = 100;
     public int maxLife = 100;
+
     // Start is called before the first frame update
     void Start()
     {

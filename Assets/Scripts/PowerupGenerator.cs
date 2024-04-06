@@ -33,7 +33,6 @@ public class PowerupGenerator : MonoBehaviour
             // } else {
                 int randIndex = Random.Range(0, common.Length);
                 GameObject card = Instantiate(common[randIndex], powerupGrid.transform);
-                card.transform.localPosition = new Vector3(card.transform.localPosition.x, card.transform.localPosition.y, -20);
             // }
         }
     }
