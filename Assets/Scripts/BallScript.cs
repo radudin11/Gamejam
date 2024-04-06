@@ -21,8 +21,6 @@ public class BallScript : MonoBehaviour
 
     public GameObject paddle;
 
-    public 
-
     int numBricks = 0;
 
 

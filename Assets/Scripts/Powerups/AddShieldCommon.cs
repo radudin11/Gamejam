@@ -8,6 +8,8 @@ namespace Game {
         public override void Use() {
             // add shield
             GameObject.Find("Paddle").GetComponent<Paddle>().AddShield();
+            // start next level
+            
         }
     }
 }

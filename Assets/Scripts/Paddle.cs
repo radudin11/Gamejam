@@ -10,7 +10,7 @@ public class Paddle : MonoBehaviour
     public float boundry;
     float movementX;
 
-    public bool hasShield = false;
+    public int shieldNo = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,9 @@ public class Paddle : MonoBehaviour
     }
 
     public void AddShield() {
-        hasShield = true;
+        shieldNo++;
+        if (shieldNo > 3){
+            shieldNo = 3;
+        }
     }
 }
