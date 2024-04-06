@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+namespace Game {
+
 public class BallScript : MonoBehaviour
 {
 
@@ -12,6 +14,8 @@ public class BallScript : MonoBehaviour
     Vector2 velocityRef; 
 
     public GameObject powerupPanel;
+
+    public GameObject PowerupGeneratorObj;
 
     int numBricks = 0;
 
@@ -62,6 +66,11 @@ public class BallScript : MonoBehaviour
     {
         powerupPanel.SetActive(true);
         Time.timeScale = 0;
+
+        PowerupGeneratorObj.GetComponent<PowerupGenerator>().GeneratePowerups();
+
         Destroy(gameObject);
     }
+}
+
 }
