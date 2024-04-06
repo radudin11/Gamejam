@@ -35,28 +35,21 @@ public class BallScript : MonoBehaviour
         velocityRef = Vector2.down * speed;
 
         numBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        if (numBricks == 0)
+        if (transform.position.y < floor)
         {
-            Powerup();
-        } else {
-            if (transform.position.y < floor)
-            {
-                transform.position = new Vector3(0, 1, 0);
-                rb.velocity = Vector2.down * speed;
+            transform.position = new Vector3(0, 1, 0);
+            rb.velocity = Vector2.down * speed;
 
-                life.GetComponent<Life>().LoseLife(20);
+            life.GetComponent<Life>().LoseLife(20);
 
-                // set paddle x to 0
-                paddle.transform.position = new Vector3(0, paddle.transform.position.y, paddle.transform.position.z);
+            // set paddle x to 0
+            paddle.transform.position = new Vector3(0, paddle.transform.position.y, paddle.transform.position.z);
 
-            }
         }
         
 
@@ -71,6 +64,9 @@ public class BallScript : MonoBehaviour
         { 
             Destroy(collision.gameObject);
             numBricks--;
+            if (numBricks == 0) {
+                Powerup();
+            }
         }
     }
 
