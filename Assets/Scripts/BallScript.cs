@@ -17,6 +17,12 @@ public class BallScript : MonoBehaviour
     public GameObject PowerupGeneratorObj;
     public GameObject BasicLevelGen;
 
+    public GameObject NormalBrick;
+
+    public GameObject IceBrick;
+
+    public GameObject Enemy;
+
     public GameObject life;
 
     public GameObject paddle;
@@ -32,15 +38,20 @@ public class BallScript : MonoBehaviour
         rb.velocity = Vector2.down * speed;
         velocityRef = Vector2.down * speed;
 
-        numBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
+        numBricks = GameObject.FindGameObjectsWithTag("Brick").Length + GameObject.FindGameObjectsWithTag("IceBrick").Length
+            + GameObject.FindGameObjectsWithTag("Enemy").Length; 
         BasicLevelGen = GameObject.Find("BasicLevelGenerator");
+        NormalBrick = BasicLevelGen.GetComponent<BasicLevelGenerator>().brickPrefab;
+        IceBrick = BasicLevelGen.GetComponent<BasicLevelGenerator>().iceBrickPrefab;
+        Enemy = BasicLevelGen.GetComponent<BasicLevelGenerator>().enemy;
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        numBricks = GameObject.FindGameObjectsWithTag("Brick").Length;
+        numBricks = GameObject.FindGameObjectsWithTag("Brick").Length + GameObject.FindGameObjectsWithTag("IceBrick").Length +
+            GameObject.FindGameObjectsWithTag("Enemy").Length;
         if (transform.position.y < floor)
         {
             transform.position = new Vector3(0, -1.5f, 0);
@@ -68,6 +79,12 @@ public class BallScript : MonoBehaviour
             if (numBricks == 0) {
                 Powerup();
             }
+        } else if (collision.gameObject.CompareTag("IceBrick")){
+            // render normal sprite
+            collision.gameObject.GetComponent<SpriteRenderer>().sprite = NormalBrick.GetComponent<SpriteRenderer>().sprite;
+            collision.gameObject.tag = "Brick";
+        } else if (collision.gameObject.CompareTag("Enemy")){
+            Destroy(collision.gameObject);
         }
     }
 

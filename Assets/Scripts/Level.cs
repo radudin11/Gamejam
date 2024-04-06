@@ -36,7 +36,7 @@ namespace Game
                         {
                             col = UnityEngine.Random.Range(0, y);
                         }
-                        grid[x - j, col] = 99;
+                        grid[x - j, col] = 100;
                         break;
                     }
                 }
@@ -48,6 +48,10 @@ namespace Game
                 for (int j = 0;  j < y && actualBricks < bricks; j++)
                 {
                     int p = UnityEngine.Random.Range(0, 1000);
+                    if (i < x - 1 && grid[i+1,j] >= 100)
+                    {
+                        continue;
+                    }
                     if (p < 850 && grid[i,j] == 0)
                     {
                         //Debug.Log(i + " " + j);

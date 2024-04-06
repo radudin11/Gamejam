@@ -13,6 +13,9 @@ public class BasicLevelGenerator : MonoBehaviour
 
     public float yRef;
     public GameObject brickPrefab;
+    public GameObject iceBrickPrefab;
+
+    public GameObject enemy;
 
     private void Awake()
     {
@@ -145,14 +148,27 @@ public class BasicLevelGenerator : MonoBehaviour
         double startX = anchor.x - r.width / 2 + 0.02 * r.width + brickWidth / 2;
         for (int j = 0; j < level.y; j++)
         {
-            if (level.grid[i, j] != 0)
+            if (level.grid[i, j] == 10)
             {
              
                 Vector2 spawnPosition = new Vector2((float)startX, (float)startY);
                 //Debug.Log(spawnPosition.x + " " + spawnPosition.y);
-                GameObject o = Instantiate(brickPrefab, spawnPosition, Quaternion.identity, stageRoot.transform);
+                float rand = Random.Range(0.0f, 1.0f);
+                GameObject o;
+                if (rand < 0.3f) {
+                    o = Instantiate(iceBrickPrefab, spawnPosition, Quaternion.identity, stageRoot.transform);
+                } else {
+                    o = Instantiate(brickPrefab, spawnPosition, Quaternion.identity, stageRoot.transform);
+                }
                 o.transform.localPosition = spawnPosition;
                 o.transform.localScale = new Vector2((float)brickWidth, (float)brickHeight);
+            } else if (level.grid[i, j] == 100)
+            {
+                Vector3 spawnPosition = new Vector3((float)startX, (float)startY, -5);
+                GameObject o = Instantiate(enemy, spawnPosition, Quaternion.identity, stageRoot.transform);
+                o.transform.localPosition = spawnPosition;
+                o.transform.localScale = new Vector2((float)brickWidth, (float)brickHeight);
+
             }
             startX += brickWidth + offsetX;
         }
