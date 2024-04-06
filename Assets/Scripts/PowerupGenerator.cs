@@ -5,12 +5,12 @@ using UnityEngine;
 namespace Game {
 public class PowerupGenerator : MonoBehaviour
 {
+    public Powerup[] common;
+    public Powerup[] rare;
+    public Powerup[] epic;
+    public Powerup[] legendary;
 
-    public GameObject[] legendary;
-    public GameObject[] epic;
-    public GameObject[] rare;
-    public GameObject[] common;
-    public GameObject parent;
+    public GameObject powerupGrid;
 
     public void GeneratePowerups()
     {
@@ -20,16 +20,16 @@ public class PowerupGenerator : MonoBehaviour
             
             if (rarity < 0.1f) {
                 int randIndex = Random.Range(0, legendary.Length);
-                Instantiate(legendary[randIndex], new Vector3(0, 0, 0), Quaternion.identity, parent.transform).SetActive(true);
+                Instantiate(legendary[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
             } else if (rarity < 0.2f) {
                 int randIndex = Random.Range(0, epic.Length);
-                Instantiate(epic[randIndex], new Vector3(0, 0, 0), Quaternion.identity, parent.transform).SetActive(true);
+                Instantiate(epic[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
             } else if (rarity < 0.6f) {
                 int randIndex = Random.Range(0, rare.Length);
-                Instantiate(rare[randIndex], new Vector3(0, 0, 0), Quaternion.identity, parent.transform).SetActive(true);
+                Instantiate(rare[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
             } else {
                 int randIndex = Random.Range(0, common.Length);
-                Instantiate(common[randIndex], new Vector3(0, 0, 0), Quaternion.identity, parent.transform).SetActive(true);
+                Instantiate(common[randIndex], new Vector3(0, 0, 0), Quaternion.identity, powerupGrid.transform).SetActive(true);
             }
         }
     }
