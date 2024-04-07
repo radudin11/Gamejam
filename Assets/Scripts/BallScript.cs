@@ -27,6 +27,10 @@ public class BallScript : MonoBehaviour
 
     public GameObject paddle;
 
+    private AudioSource audioSource;
+    public AudioClip hitBrickSound;
+    public AudioClip hitOrcSound;
+
     int numBricks = 0;
 
     public int score;
@@ -49,6 +53,7 @@ public class BallScript : MonoBehaviour
         IceBrick = BasicLevelGen.GetComponent<BasicLevelGenerator>().iceBrickPrefab;
         Enemy = BasicLevelGen.GetComponent<BasicLevelGenerator>().enemy;
         ScoreText = GameObject.Find("Score");
+        audioSource = GetComponent<AudioSource>();
 
         score = 0;
         ScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
@@ -69,6 +74,16 @@ public class BallScript : MonoBehaviour
 
             // set paddle x to 0
             paddle.transform.position = new Vector3(0, paddle.transform.position.y, paddle.transform.position.z);
+            // add cooldown
+            paddle.GetComponent<Paddle>().cooldown = 0.5f;
+
+            // destroy all bullets
+            GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
+
+            foreach (GameObject bullet in bullets)
+            {
+                Destroy(bullet);
+            }
 
         }
         
@@ -84,6 +99,7 @@ public class BallScript : MonoBehaviour
         { 
             Destroy(collision.gameObject);
             numBricks--;
+            audioSource.PlayOneShot(hitBrickSound);
             if (numBricks == 0) {
                 Powerup();
             }
@@ -93,12 +109,14 @@ public class BallScript : MonoBehaviour
             // render normal sprite
             collision.gameObject.GetComponent<SpriteRenderer>().sprite = NormalBrick.GetComponent<SpriteRenderer>().sprite;
             collision.gameObject.tag = "Brick";
+            audioSource.PlayOneShot(hitBrickSound);
             
             score += 10;
             
             ScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
 
         } else if (collision.gameObject.CompareTag("Enemy")){
+            audioSource.PlayOneShot(hitOrcSound);
             Destroy(collision.gameObject);
             numBricks--;
             

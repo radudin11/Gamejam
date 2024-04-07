@@ -16,6 +16,7 @@ public class enemyScript : MonoBehaviour
     {
         // set random time to wait
         timeToWait = UnityEngine.Random.Range(3.5f, 5.5f);
+        // GetComponent<Animator>().Play("Idle");
     }
 
     // Update is called once per frame

@@ -28,7 +28,7 @@ public class ToMainMenu : MonoBehaviour
 
         if (text != "") {
             // add score and name to csv file
-            string path = "Assets/Highscores/highscores.csv";
+            string path = "./highscores.csv";
             System.IO.StreamWriter file = new System.IO.StreamWriter(path, true);
             file.WriteLine(text + "," + score.ToString());
             file.Close();

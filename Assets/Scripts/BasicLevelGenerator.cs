@@ -89,15 +89,15 @@ public class BasicLevelGenerator : MonoBehaviour
         if (stageNumber == 0) {
             DrawLevel(new Level(3, 6, 0.6f, 0.01f), newRoot);
         } else if (stageNumber == 1) {
-            DrawLevel(new Level(4, 8, 0.6f, 0.05f), newRoot);
+            DrawLevel(new Level(3, 6, 0.6f, 0.06f), newRoot);
         } else if (stageNumber == 2) {
-            DrawLevel(new Level(5, 10, 0.7f, 0.1f), newRoot);
+            DrawLevel(new Level(5, 8, 0.7f, 0.06f), newRoot);
         } else if (stageNumber == 3) {
-            DrawLevel(new Level(5, 10, 0.7f, 0.2f), newRoot);
+            DrawLevel(new Level(5, 10, 0.7f, 0.07f), newRoot);
             // increase ball speed
             ball.GetComponent<BallScript>().speed += 2;
         } else {
-            DrawLevel(new Level(5, 10, 0.6f, 0.3f), newRoot);
+            DrawLevel(new Level(5, 10, 0.6f, 0.1f), newRoot);
             // increase ball speed until 20
             ball.GetComponent<BallScript>().speed += 2;
             if (ball.GetComponent<BallScript>().speed > 20) {

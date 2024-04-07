@@ -22,7 +22,12 @@ public class ShowHighscores : MonoBehaviour
 
         List<pair> highscores = new List<pair>();
         // open csv file
-        string path = "Assets/Highscores/highscores.csv";
+        string path = "./highscores.csv";
+
+        // check if file exists
+        if (!System.IO.File.Exists(path)) {
+            return;
+        }
         string[] lines = System.IO.File.ReadAllLines(path);
 
         // read each line

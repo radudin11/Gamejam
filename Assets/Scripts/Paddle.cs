@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 
 public class Paddle : MonoBehaviour
@@ -12,6 +13,13 @@ public class Paddle : MonoBehaviour
     float movementX;
 
     public int shieldNo = 0;
+    public GameObject shieldObj;
+
+    public float cooldown = 0.5f;
+
+    private AudioSource audioSource;
+    public AudioClip hitSound;
+    public AudioClip shieldSound;
 
 
     // Start is called before the first frame update
@@ -19,17 +27,24 @@ public class Paddle : MonoBehaviour
     {
         speed = 15;
         boundry = 11;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        movementX = Input.GetAxis("Horizontal");
-
-        if ((movementX > 0 && transform.position.x < boundry) || (movementX < 0 && transform.position.x > -boundry))
+        if (cooldown > 0)
         {
-            transform.position += new Vector3(movementX, 0, 0) * Time.deltaTime * speed;
+            cooldown -= Time.deltaTime;
+        } else {
+            movementX = Input.GetAxis("Horizontal");
+
+            if ((movementX > 0 && transform.position.x < boundry) || (movementX < 0 && transform.position.x > -boundry))
+            {
+                transform.position += new Vector3(movementX, 0, 0) * Time.deltaTime * speed;
+            }
         }
+        
         
     }
 
@@ -41,17 +56,21 @@ public class Paddle : MonoBehaviour
             Destroy(collision.gameObject);
             if (shieldNo > 0)
             {
+                audioSource.PlayOneShot(shieldSound);
                 shieldNo--;
             }
             else
             {
+                audioSource.PlayOneShot(hitSound);
                 GameObject.Find("life").GetComponent<Life>().LoseLife(10);
+                shieldObj.SetActive(false);
             }
         }
     }
 
     public void AddShield() {
         shieldNo += 2;
+        shieldObj.SetActive(true);
     }
 
     public void IncreasePaddleSize() {
