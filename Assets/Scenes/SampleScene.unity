@@ -344,7 +344,7 @@ GameObject:
   - component: {fileID: 274229525}
   - component: {fileID: 274229529}
   - component: {fileID: 274229528}
-  m_Layer: 0
+  m_Layer: 1
   m_Name: Paddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -517,6 +517,8 @@ MonoBehaviour:
   offset: {x: 2, y: 2}
   yRef: 0
   brickPrefab: {fileID: 7837333115179020732, guid: e130ee10d2ee11343bbba90bcd0aea6a, type: 3}
+  iceBrickPrefab: {fileID: 7837333115179020732, guid: 021c4838968a2aa4aa64a600658ef32a, type: 3}
+  enemy: {fileID: 5800765573643567529, guid: 3cd059abb3445004eab67cafae32389d, type: 3}
   canvas: {fileID: 0}
   ball: {fileID: 0}
   stageRoot: {fileID: 0}
@@ -988,6 +990,9 @@ MonoBehaviour:
   PowerupsObject: {fileID: 871462696}
   PowerupGeneratorObj: {fileID: 471646181}
   BasicLevelGen: {fileID: 0}
+  NormalBrick: {fileID: 0}
+  IceBrick: {fileID: 0}
+  Enemy: {fileID: 0}
   life: {fileID: 1959240364}
   paddle: {fileID: 274229524}
 --- !u!1 &1150431048

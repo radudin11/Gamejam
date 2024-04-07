@@ -29,6 +29,23 @@ public class Paddle : MonoBehaviour
         
     }
 
+    // check bullet collision with paddle
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Destroy(collision.gameObject);
+            if (shieldNo > 0)
+            {
+                shieldNo--;
+            }
+            else
+            {
+                GameObject.Find("life").GetComponent<Life>().LoseLife(10);
+            }
+        }
+    }
+
     public void AddShield() {
         shieldNo += 2;
     }

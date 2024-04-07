@@ -8,6 +8,7 @@ TagManager:
   - powerup
   - IceBrick
   - Enemy
+  - Bullet
   layers:
   - Default
   - TransparentFX
