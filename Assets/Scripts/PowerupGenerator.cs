@@ -43,6 +43,12 @@ public class PowerupGenerator : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // load powerups
+        // common = Resources.LoadAll<GameObject>("./Assets/Prefabs/powerups/common");
+        // rare = Resources.LoadAll<GameObject>("./Scripts/Powerups/rare");
+        // epic = Resources.LoadAll<GameObject>("./Assets/Prefabs/Powerups/epic");
+        // legendary = Resources.LoadAll<GameObject>("./Powerups/legendary");
+
         
     }
 
