@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ToMainMenu : MonoBehaviour
 {
@@ -17,6 +18,21 @@ public class ToMainMenu : MonoBehaviour
     }
 
     public void MainMenu() {
+
+        string text = GameObject.Find("Input").GetComponent<TMP_InputField>().text;
+
+        int score = PlayerPrefs.GetInt("score");
+
+        Debug.Log("Score: " + score);
+        Debug.Log("Name: " + text);
+
+        if (text != "") {
+            // add score and name to csv file
+            string path = "Assets/Highscores/highscores.csv";
+            System.IO.StreamWriter file = new System.IO.StreamWriter(path, true);
+            file.WriteLine(text + "," + score.ToString());
+            file.Close();
+        }
         UnityEngine.SceneManagement.SceneManager.LoadScene("StartMenu");
     }
 }

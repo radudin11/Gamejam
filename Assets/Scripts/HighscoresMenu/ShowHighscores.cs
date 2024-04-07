@@ -1,24 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using UnityEngine;
 
 public class ShowHighscores : MonoBehaviour
 {
+    struct pair {
+        public string x;
+        public int y;
+
+        public pair(string x, int y)
+        {
+            this.x = x;
+            this.y = y;
+        }
+    };
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponent<TMPro.TextMeshProUGUI>().text = "";
 
+        List<pair> highscores = new List<pair>();
         // open csv file
         string path = "Assets/Highscores/highscores.csv";
         string[] lines = System.IO.File.ReadAllLines(path);
 
         // read each line
-        int place = 1;
         foreach (string line in lines) {
             string[] entries = line.Split(',');
-            gameObject.GetComponent<TMPro.TextMeshProUGUI>().text += place.ToString() + ". " + entries[0] + " - " + entries[1] + "\n";
-            place++;
+            highscores.Add(new pair(entries[0], int.Parse(entries[1])));
+        }
+
+        highscores.Sort((a, b) => b.y.CompareTo(a.y));
+
+        for (int i = 0; i < 10 && i < highscores.Count; i++) {
+            int place = i + 1;
+            gameObject.GetComponent<TMPro.TextMeshProUGUI>().text += place.ToString() + ". " + highscores[i].x + " - " + highscores[i].y + "\n";
         }
 
 

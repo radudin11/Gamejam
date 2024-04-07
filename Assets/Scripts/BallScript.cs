@@ -95,12 +95,13 @@ public class BallScript : MonoBehaviour
             collision.gameObject.tag = "Brick";
             
             score += 10;
+            
             ScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
 
         } else if (collision.gameObject.CompareTag("Enemy")){
             Destroy(collision.gameObject);
             numBricks--;
-
+            
             score += 20;
             ScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
         }
