@@ -32,6 +32,8 @@ public class BasicLevelGenerator : MonoBehaviour
     public GameObject stageRoot;
     private GameObject newRoot;
 
+    private GameObject paddle;
+
     private GameObject text;
     private bool stageIsMoving = false;
     private float stageMoveSpeed = 15.0f;
@@ -44,6 +46,7 @@ public class BasicLevelGenerator : MonoBehaviour
         canvas = GameObject.Find("Canvas");
         stageRoot = GameObject.Find("StageRoot");
         ball = GameObject.Find("Ball");
+        paddle = GameObject.Find("Paddle");
 
     }
 
@@ -121,9 +124,10 @@ public class BasicLevelGenerator : MonoBehaviour
                 Destroy(stageRoot);
                 stageRoot = newRoot;
                 stageRoot.name = "StageRoot";
-                ball.transform.position = new Vector3(0, -1, 0);
+                ball.transform.position = new Vector3(0, -2, 0);
                 ball.SetActive(true);
                 ball.GetComponent<Rigidbody2D>().velocity = Vector2.down * ball.GetComponent<BallScript>().speed;
+                paddle.transform.position = new Vector3(0, paddle.transform.position.y, 0);
             }
         }
     }

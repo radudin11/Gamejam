@@ -24,8 +24,6 @@ public class Life : MonoBehaviour
                 // game over
                 Debug.Log("Game Over");
             }
-
-            GetComponent<TMP_Text>().text = currentLife.ToString() + "/" + maxLife.ToString();
         
     }
 

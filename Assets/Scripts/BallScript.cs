@@ -29,6 +29,10 @@ public class BallScript : MonoBehaviour
 
     int numBricks = 0;
 
+    public int score;
+
+    public GameObject ScoreText;
+
 
     Rigidbody2D rb;
     // Start is called before the first frame update
@@ -44,6 +48,10 @@ public class BallScript : MonoBehaviour
         NormalBrick = BasicLevelGen.GetComponent<BasicLevelGenerator>().brickPrefab;
         IceBrick = BasicLevelGen.GetComponent<BasicLevelGenerator>().iceBrickPrefab;
         Enemy = BasicLevelGen.GetComponent<BasicLevelGenerator>().enemy;
+        ScoreText = GameObject.Find("Score");
+
+        score = 0;
+        ScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
         
     }
 
@@ -79,12 +87,22 @@ public class BallScript : MonoBehaviour
             if (numBricks == 0) {
                 Powerup();
             }
+            score += 10;
+            ScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
         } else if (collision.gameObject.CompareTag("IceBrick")){
             // render normal sprite
             collision.gameObject.GetComponent<SpriteRenderer>().sprite = NormalBrick.GetComponent<SpriteRenderer>().sprite;
             collision.gameObject.tag = "Brick";
+            
+            score += 10;
+            ScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
+
         } else if (collision.gameObject.CompareTag("Enemy")){
             Destroy(collision.gameObject);
+            numBricks--;
+
+            score += 20;
+            ScoreText.GetComponent<TMPro.TextMeshProUGUI>().text = "Score: " + score;
         }
     }
 
