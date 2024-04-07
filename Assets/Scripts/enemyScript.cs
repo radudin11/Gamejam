@@ -10,6 +10,8 @@ public class enemyScript : MonoBehaviour
     float timeToWait;
 
     public GameObject EnemyBullet;
+
+    GameObject? bullet = null;
     void Start()
     {
         // set random time to wait
@@ -21,7 +23,11 @@ public class enemyScript : MonoBehaviour
     {
         // if time to wait is over shoot, reset time to wait
         if (timeToWait <= 0) {
+            if (bullet != null) {
+                Destroy(bullet);
+            }
             Shoot();
+
             timeToWait = 5.0f;
         } else {
             timeToWait -= Time.deltaTime;
@@ -29,7 +35,7 @@ public class enemyScript : MonoBehaviour
     }
 
     public void Shoot() {
-        GameObject bullet = Instantiate(EnemyBullet, transform.position, Quaternion.identity) as GameObject;
+        bullet = Instantiate(EnemyBullet, transform.position, Quaternion.identity) as GameObject;
         // set velocity towards paddle
         bullet.GetComponent<Rigidbody2D>().velocity = (GameObject.Find("Paddle").transform.position - transform.position).normalized * 5.0f;
         // rotate bullet to face paddle

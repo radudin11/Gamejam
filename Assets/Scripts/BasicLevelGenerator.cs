@@ -36,6 +36,8 @@ public class BasicLevelGenerator : MonoBehaviour
     private bool stageIsMoving = false;
     private float stageMoveSpeed = 15.0f;
 
+    private int stageNumber = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -80,8 +82,26 @@ public class BasicLevelGenerator : MonoBehaviour
             new Vector3(0, stageRoot.GetComponent<RectTransform>().rect.height, 0);
         newRootRect.anchoredPosition = newRootPos;
         // stage generation
-        // GenerateStage();
-        DrawLevel(new Level(5, 10, 0.8f, 0.1f), newRoot);
+        // GenerateStage()
+        if (stageNumber == 0) {
+            DrawLevel(new Level(3, 6, 0.6f, 0.01f), newRoot);
+        } else if (stageNumber == 1) {
+            DrawLevel(new Level(4, 8, 0.6f, 0.05f), newRoot);
+        } else if (stageNumber == 2) {
+            DrawLevel(new Level(5, 10, 0.7f, 0.1f), newRoot);
+        } else if (stageNumber == 3) {
+            DrawLevel(new Level(5, 10, 0.7f, 0.2f), newRoot);
+            // increase ball speed
+            ball.GetComponent<BallScript>().speed += 2;
+        } else {
+            DrawLevel(new Level(5, 10, 0.6f, 0.3f), newRoot);
+            // increase ball speed until 20
+            ball.GetComponent<BallScript>().speed += 2;
+            if (ball.GetComponent<BallScript>().speed > 20) {
+                ball.GetComponent<BallScript>().speed = 20;
+            }
+        }
+        stageNumber++;
         stageIsMoving = true;
         Time.timeScale = 1;
     }
