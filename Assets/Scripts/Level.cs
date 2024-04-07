@@ -34,6 +34,16 @@ namespace Game
                         int col = UnityEngine.Random.Range(0, y);
                         while (grid[x - j, col] != 0)
                         {
+                            if (x - j > 0 && grid[x - j - 1, col] == 100)
+                            {
+                                col = UnityEngine.Random.Range(0, y);
+                                continue;
+                            }
+                            if ((x - j < x - 1 && grid[x - j + 1, col] == 100))
+                            {
+                                col = UnityEngine.Random.Range(0, y);
+                                continue;
+                            }
                             col = UnityEngine.Random.Range(0, y);
                         }
                         grid[x - j, col] = 100;

@@ -142,7 +142,7 @@ public class BasicLevelGenerator : MonoBehaviour
     Debug.Log((brickWidth * level.y + offsetX * (level.y - 1)) + " " + (brickHeight + level.x + offsetY * (level.x - 1)));
 
     Vector2 anchor = Vector2.zero; // stageRoot.GetComponent<RectTransform>().anchoredPosition;
-    double startY = anchor.y - r.height / 2 + 0.4 * r.height + brickHeight / 2;
+    double startY = anchor.y + r.height / 2 - 0.02 * r.height - brickHeight / 2;
     for (int i = 0; i <  level.x; i++)
     {
         double startX = anchor.x - r.width / 2 + 0.02 * r.width + brickWidth / 2;
@@ -172,8 +172,10 @@ public class BasicLevelGenerator : MonoBehaviour
             }
             startX += brickWidth + offsetX;
         }
-        startY += brickHeight + offsetY;
+        startY -= brickHeight + offsetY;
     }
+
+            //level.printGrid();
 }
 }
 }
